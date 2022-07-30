@@ -7,7 +7,7 @@ from googleapiclient.discovery import build
 
 #app that gets the fixtures for a certain gameweek and creates events for them on google calendar
 
-api_key=''
+api_key='key'
 SCOPES = ['https://www.googleapis.com/auth/calendar.events']
 
 def getTeamById(id):

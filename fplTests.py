@@ -1,11 +1,7 @@
-from datetime import datetime
-from pickle import FALSE
 import requests
-from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
 
-#app that gets the fixtures for a certain gameweek and sends to your email
+
+#app that gets the fixtures for a certain gameweek 
 
 
 def getTeamById(id):
@@ -32,9 +28,7 @@ def getFixtures(GW):
 
 fix = getFixtures(1)
 
-def main():
-    pass
+print(fix)
 
-main()
 
 

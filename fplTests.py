@@ -5,10 +5,8 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
-#app that gets the fixtures for a certain gameweek and creates events for them on google calendar
+#app that gets the fixtures for a certain gameweek and sends to your email
 
-api_key='key'
-SCOPES = ['https://www.googleapis.com/auth/calendar.events']
 
 def getTeamById(id):
     targetTeam = None
@@ -27,30 +25,15 @@ def getFixtures(GW):
         home = getTeamById(res['team_h'])
         away = getTeamById(res['team_a'])  
         fixtures.append({
-        "summary": f"Match between {home} and {away}",
+        "summary": f"Match between {home} and {away} starting at {res['kickoff_time']} "
         
-        "description": "This a description",
-        "start": {
-            "dateTime": res['kickoff_time'],
-        },
-        "end": {
-            "dateTime": res['kickoff_time'],
-        },
         })
     return fixtures
 
 fix = getFixtures(1)
 
 def main():
-    flow = InstalledAppFlow.from_client_secrets_file("creds.json", SCOPES)
-    creds = flow.run_local_server(port=0)
-
-    service = build('calendar', 'v3', credentials = creds)
-    try:
-        for fixture in fix:
-            response = service.events().insert(calendarId="primary", body = fixture).execute()
-    except Exception as e:
-        return e.message
+    pass
 
 main()
 
